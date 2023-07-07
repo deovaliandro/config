@@ -33,14 +33,12 @@
         htop
         unzip
         zip
-        youtube-dl
+        yt-dlp
         wget
         curl
 
         neofetch
         trash-cli
-
-        vscode
     ];
 
     home.file = {
@@ -62,39 +60,49 @@
 
         neovim = {
             enable = true;
-        viAlias = true;
-        vimAlias = true;
-        withPython3 = true;
-        plugins = with pkgs.vimPlugins; [
-            neovim-sensible
-        nvim-surround
-        nvim-treesitter
-        nvim-cmp
-        vim-airline
-        vim-airline-themes
-        vim-airline-clock
-        vim-commentary
-        vim-fugitive
-        vim-gitgutter
-        vim-indent-guides
-        dracula-nvim
-        ];
-        extraConfig = ''
-            syntax enable
-            set number relativenumber
-            
-        set cursorline
-        set scrolloff=5
+            viAlias = true;
+            vimAlias = true;
+            withPython3 = true;
 
-        let g:airline_theme='wombat'
-        '';
+            plugins = with pkgs.vimPlugins; [
+                neovim-sensible
+                nvim-surround
+                nvim-treesitter
+                nvim-cmp
+                vim-airline
+                vim-airline-themes
+                vim-airline-clock
+                vim-commentary
+                vim-fugitive
+                vim-gitgutter
+                vim-indent-guides
+                dracula-nvim
+            ];
+
+            extraConfig = ''
+                syntax enable
+                set number relativenumber
+                set cursorline
+                set scrolloff=5
+
+                let g:airline_theme='wombat'
+            '';
         };
 
     bat = {
         enable = true;
+
         config = {
-        pager = "less -FR";
-        theme = "Dracula";
+            pager = "less -FR";
+        };
+
+        themes = {
+            dracula = builtins.readFile (pkgs.fetchFromGitHub {
+                owner = "dracula";
+                repo = "sublime"; # Bat uses sublime syntax for its themes
+                rev = "26c57ec282abcaa76e57e055f38432bd827ac34e";
+                sha256 = "019hfl4zbn4vm4154hh3bwk6hm7bdxbr1hdww83nabxwjn99ndhv";
+            } + "/Dracula.tmTheme");
         };
     };
 
@@ -110,14 +118,18 @@
             mv = "mv -iv";
             rm = "trash-put";
             cat = "bat";
-            gaa = "git add . -i";
+            gaa = "git add .";
             ga = "git add -i";
-            gcom = "git commit -Ss -m";
+            gcom = "git commit -Ss -am";
             gpush = "git push";
             gpull = "git pull";
             gco = "git checkout";
             gst = "git status";
         };
+        interactiveShellInit = ''
+            set -gx GEM_HOME $HOME/gems
+            set PATH $PATH $HOME/gems/bin
+        '';
     };
 
     };
