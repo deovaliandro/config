@@ -53,29 +53,29 @@
         {
           plugin = vim-airline-themes;
           config = ''
-            let g:airline_theme='papercolor'
-            let g:airline#extensions#whitespace#enabled = 0
+            let g:airline_theme='ayu_dark'
             let g:airline#extensions#tabline#enabled = 1
-            let g:airline#extensions#tabline#show_close_button = 0
-            let g:airline#extensions#tabline#tabs_label = ""
-            let g:airline#extensions#tabline#buffers_label = ""
             let g:airline#extensions#tabline#fnamemod = ':t'
-            let g:airline#extensions#tabline#show_tab_count = 0
-            let g:airline#extensions#tabline#show_buffers = 0
-            let g:airline#extensions#tabline#tab_min_count = 2
-            let g:airline#extensions#tabline#show_splits = 0
-            let g:airline#extensions#tabline#show_tab_nr = 0
-            let g:airline#extensions#tabline#show_tab_type = 0
+	    let g:airline#extensions#branch#enable = 1
+	    let g:airline_powerline_fonts = 1
+	    let g:airline#extensions#whitespace#enabled = 0
           '';
         }
         vim-commentary
         vim-fugitive
         vim-gitgutter
+	{
+          plugin = vim-unimpaired;
+	  config = ''
+	    nmap <C-k> [e
+	    nmap <C-j> ]e
+	  '';
+	}
         {
-          plugin = catppuccin-nvim;
+          plugin = gruvbox-nvim;
           config = ''
             syntax enable
-            colorscheme catppuccin
+            colorscheme gruvbox
           '';
         }
         {
@@ -97,11 +97,20 @@
         set cursorline
         set scrolloff=5
         set encoding=UTF-8
+	set nohlsearch
       '';
     };
 
     bat = {
       enable = true;
+      themes = {
+        dracula = builtins.readFile (pkgs.fetchFromGitHub {
+	  owner = "dracula";
+	  repo = "sublime"; # Bat uses sublime syntax for its themes
+	  rev = "26c57ec282abcaa76e57e055f38432bd827ac34e";
+	  sha256 = "019hfl4zbn4vm4154hh3bwk6hm7bdxbr1hdww83nabxwjn99ndhv";
+	} + "/Dracula.tmTheme");
+      };
       config = {
         pager = "less -FR";
       };
