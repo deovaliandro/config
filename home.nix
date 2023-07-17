@@ -8,29 +8,28 @@
 
     home.packages = with pkgs; [
         hugo
-            htop
-            unzip
-            zip
-            yt-dlp
-            wget
-            curl
-            neofetch
-            trash-cli
-            php
-            jetbrains.phpstorm
-            jetbrains.webstorm
-            jetbrains.idea-ultimate
-            jetbrains.goland
-            jetbrains.datagrip
-            jetbrains.clion
-            du-dust
-            fd
-            procs
-            helix
-            fzf
-            nodejs_20
-            go
-            kitty
+        htop
+        unzip
+        zip
+        yt-dlp
+        wget
+        curl
+        neofetch
+        trash-cli
+        php
+        jetbrains.phpstorm
+        jetbrains.webstorm
+        jetbrains.idea-ultimate
+        jetbrains.goland
+        jetbrains.datagrip
+        jetbrains.clion
+        du-dust
+        fd
+        procs
+        helix
+        fzf
+        nodejs_20
+        go
     ];
 
     programs.home-manager.enable = true;
@@ -50,6 +49,7 @@
             withPython3 = true;
 
             plugins = with pkgs.vimPlugins; [
+                vim-gitgutter
                 nvim-autopairs
                 nvim-web-devicons
                 vim-airline
@@ -131,6 +131,7 @@
                 set number relativenumber
                 set nohlsearch
                 set expandtab ts=4 sw=4 ai
+                set cc=80
                 '';
         };
 
@@ -139,7 +140,7 @@
             themes = {
                 dracula = builtins.readFile (pkgs.fetchFromGitHub {
                         owner = "dracula";
-                        repo = "sublime"; # Bat uses sublime syntax for its themes
+                        repo = "sublime";
                         rev = "26c57ec282abcaa76e57e055f38432bd827ac34e";
                         sha256 = "019hfl4zbn4vm4154hh3bwk6hm7bdxbr1hdww83nabxwjn99ndhv";
                         } + "/Dracula.tmTheme");
@@ -272,6 +273,7 @@
         };
 
         tmux = {
+            baseIndex = 1;
             enable = true;
             mouse = true;
             shell = "${pkgs.fish}/bin/fish";
