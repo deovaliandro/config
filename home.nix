@@ -23,10 +23,10 @@
         jetbrains.goland
         jetbrains.datagrip
         jetbrains.clion
+        jetbrains.pycharm-community
         du-dust
         fd
         procs
-        helix
         fzf
         nodejs_20
         go
@@ -94,31 +94,25 @@
                 {
                     plugin = barbar-nvim;
                     config = ''
-                        nnoremap <silent>    <A-,> <Cmd>BufferPrevious<CR>
-                        nnoremap <silent>    <A-.> <Cmd>BufferNext<CR>
-
-                        nnoremap <silent>    <A-<> <Cmd>BufferMovePrevious<CR>
-                        nnoremap <silent>    <A->> <Cmd>BufferMoveNext<CR>
-
-                        nnoremap <silent>    <A-1> <Cmd>BufferGoto 1<CR>
-                        nnoremap <silent>    <A-2> <Cmd>BufferGoto 2<CR>
-                        nnoremap <silent>    <A-3> <Cmd>BufferGoto 3<CR>
-                        nnoremap <silent>    <A-4> <Cmd>BufferGoto 4<CR>
-                        nnoremap <silent>    <A-5> <Cmd>BufferGoto 5<CR>
-                        nnoremap <silent>    <A-6> <Cmd>BufferGoto 6<CR>
-                        nnoremap <silent>    <A-7> <Cmd>BufferGoto 7<CR>
-                        nnoremap <silent>    <A-8> <Cmd>BufferGoto 8<CR>
-                        nnoremap <silent>    <A-9> <Cmd>BufferGoto 9<CR>
-                        nnoremap <silent>    <A-0> <Cmd>BufferLast<CR>
-
-                        nnoremap <silent>    <A-p> <Cmd>BufferPin<CR>
-
-                        nnoremap <silent>    <A-c> <Cmd>BufferClose<CR>
-                        nnoremap <silent>    <A-s-c> <Cmd>BufferRestore<CR>
-
-                        nnoremap <silent> <C-p>    <Cmd>BufferPick<CR>
-                        nnoremap <silent> <C-p>    <Cmd>BufferPickDelete<CR>
-
+                        nnoremap <silent> <A-,> <Cmd>BufferPrevious<CR>
+                        nnoremap <silent> <A-.> <Cmd>BufferNext<CR>
+                        nnoremap <silent> <A-<> <Cmd>BufferMovePrevious<CR>
+                        nnoremap <silent> <A->> <Cmd>BufferMoveNext<CR>
+                        nnoremap <silent> <A-1> <Cmd>BufferGoto 1<CR>
+                        nnoremap <silent> <A-2> <Cmd>BufferGoto 2<CR>
+                        nnoremap <silent> <A-3> <Cmd>BufferGoto 3<CR>
+                        nnoremap <silent> <A-4> <Cmd>BufferGoto 4<CR>
+                        nnoremap <silent> <A-5> <Cmd>BufferGoto 5<CR>
+                        nnoremap <silent> <A-6> <Cmd>BufferGoto 6<CR>
+                        nnoremap <silent> <A-7> <Cmd>BufferGoto 7<CR>
+                        nnoremap <silent> <A-8> <Cmd>BufferGoto 8<CR>
+                        nnoremap <silent> <A-9> <Cmd>BufferGoto 9<CR>
+                        nnoremap <silent> <A-0> <Cmd>BufferLast<CR>
+                        nnoremap <silent> <A-p> <Cmd>BufferPin<CR>
+                        nnoremap <silent> <A-c> <Cmd>BufferClose<CR>
+                        nnoremap <silent> <A-s-c> <Cmd>BufferRestore<CR>
+                        nnoremap <silent> <C-p> <Cmd>BufferPick<CR>
+                        nnoremap <silent> <C-p> <Cmd>BufferPickDelete<CR>
                         nnoremap <silent> <Space>bb <Cmd>BufferOrderByBufferNumber<CR>
                         nnoremap <silent> <Space>bd <Cmd>BufferOrderByDirectory<CR>
                         nnoremap <silent> <Space>bl <Cmd>BufferOrderByLanguage<CR>
@@ -175,6 +169,7 @@
                 set PATH $PATH $HOME/gems/bin
                 set -Ux TERM screen-256color-bce
                 set PATH $PATH $HOME/.local/bin
+                set -U fish_greeting
                 '';
         };
 
@@ -185,18 +180,6 @@
             settings = {
                 directory.fish_style_pwd_dir_length = 1;
                 directory.truncation_length = 2;
-                battery = {
-                    charging_symbol = " ";
-                    discharging_symbol = " ";
-                    empty_symbol = " ";
-                    full_symbol = " ";
-                    unknown_symbol = " ";
-                    display = [
-                    {
-                        threshold = 100;
-                    }
-                    ];
-                };
 
                 git_commit = {
                     commit_hash_length = 7;
@@ -290,6 +273,7 @@
             ];
 
             extraConfig = ''
+                set -g status-right '#(date +"%%d-%%m-%%Y %%H:%%M:%%S")'
                 '';
         };
     };
