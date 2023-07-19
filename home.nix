@@ -7,6 +7,7 @@
     home.stateVersion = "23.05";
 
     home.packages = with pkgs; [
+        emacs
         hugo
         htop
         unzip
@@ -157,7 +158,7 @@
                 rm = "trash-put";
                 cat = "bat";
                 gaa = "git add .";
-                ga = "git add -i";
+                ga = "git add";
                 gcom = "git commit -Ss -am";
                 gpush = "git push";
                 gpull = "git pull";
@@ -185,14 +186,8 @@
                     commit_hash_length = 7;
                     format = "[($hash$tag)]($style) ";
                     style = "green bold";
-                    only_detached = true;
                     disabled = false;
-                    tag_symbol = " 🏷  ";
-                    tag_disabled = true;
                 };
-
-                aws = { disabled = true; };
-                gcloud = { disabled = true; };
 
                 cmd_duration.style = "#f1fa8c";
                 directory.style = "#50fa7b";
@@ -224,29 +219,6 @@
                     success_symbol = "[λ](#f8f8f2)";
                     error_symbol = "[λ](#ff5555)";
                 };
-
-                status = {
-                    map_symbol = true;
-                    not_executable_symbol = "🚫";
-                    not_found_symbol = "🔍";
-                    pipestatus = false;
-                    pipestatus_format = "[$pipestatus] => [$symbol$common_meaning$signal_name$maybe_int]($style)";
-                    pipestatus_separator = "|";
-                    recognize_signal_code = true;
-                    signal_symbol = "⚡";
-                    style = "bold red bg:blue";
-                    success_symbol = "🟢 SUCCESS";
-                    symbol = "🔴 ";
-                    disabled = true;
-                };
-
-                sudo = {
-                    format = "[as $symbol]($style)";
-                    symbol = "🧙 ";
-                    style = "bold blue";
-                    allow_windows = false;
-                    disabled = true;
-                };
             };
         };
 
@@ -274,7 +246,7 @@
 
             extraConfig = ''
                 set -g status-right '#(date +"%%d-%%m-%%Y %%H:%%M:%%S")'
-                '';
+            '';
         };
     };
 }
