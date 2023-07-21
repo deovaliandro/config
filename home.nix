@@ -7,7 +7,6 @@
     home.stateVersion = "23.05";
 
     home.packages = with pkgs; [
-        hugo
         htop
         unzip
         zip
@@ -30,6 +29,7 @@
         fzf
         nodejs_20
         go
+        ranger
     ];
 
     programs.home-manager.enable = true;
@@ -62,6 +62,7 @@
 
             plugins = with pkgs.vimPlugins; [
 	    	    vim-gitgutter
+                vim-surround
                 nvim-autopairs
                 nvim-web-devicons
                 vim-airline
@@ -73,7 +74,9 @@
                 vim-nerdtree-syntax-highlight
                 nerdtree-git-plugin
                 vim-startify
-                vim-smoothie
+                neo-tree-nvim
+                plenary-nvim
+                windows-nvim
                 {
                     plugin = chadtree;
                     config = ''
