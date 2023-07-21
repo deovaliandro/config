@@ -7,7 +7,6 @@
     home.stateVersion = "23.05";
 
     home.packages = with pkgs; [
-        emacs
         hugo
         htop
         unzip
@@ -36,6 +35,18 @@
     programs.home-manager.enable = true;
 
     programs = {
+        emacs = {
+            enable = true;
+            extraConfig = ''
+                (setq inhibit-splash-screen t)
+                (blink-cursor-mode 0)
+                (tool-bar-mode 0)
+                (set-frame-font "IosevkaTerm Nerd Font Mono" nil t)
+                (setq colom-number-mode t)
+                (setq ring-bell-function 'ignore)
+            '';
+        };
+
         git = {
             package = pkgs.gitAndTools.gitFull;
             enable = true;
@@ -50,16 +61,25 @@
             withPython3 = true;
 
             plugins = with pkgs.vimPlugins; [
-                vim-gitgutter
+	    	    vim-gitgutter
                 nvim-autopairs
                 nvim-web-devicons
                 vim-airline
                 vim-autoformat
                 coc-nvim
                 vim-devicons
+                nvim-treesitter.withAllGrammars
                 vim-nerdtree-tabs
                 vim-nerdtree-syntax-highlight
                 nerdtree-git-plugin
+                vim-startify
+                vim-smoothie
+                {
+                    plugin = chadtree;
+                    config = ''
+                        nnoremap <leader>v <cmd>CHADopen<cr>
+                    '';
+                }
                 {
                     plugin = vim-airline-themes;
                     config = ''
@@ -77,19 +97,10 @@
                         '';
                 }
                 {
-                    plugin = neovim-ayu;
+                    plugin = sonokai;
                     config = ''
                         syntax enable
-                        colorscheme ayu-mirage
-                        '';
-                }
-                {
-                    plugin = nerdtree;
-                    config = ''
-                        nnoremap <leader>n :NERDTreeFocus<CR>
-                        nnoremap <C-n> :NERDTree<CR>
-                        nnoremap <C-t> :NERDTreeToggle<CR>
-                        nnoremap <C-f> :NERDTreeFind<CR>
+                        colorscheme sonokai
                         '';
                 }
                 {
@@ -127,6 +138,8 @@
                 set nohlsearch
                 set expandtab ts=4 sw=4 ai
                 set cc=80
+                let g:loaded_netrw       = 1
+                let g:loaded_netrwPlugin = 1
                 '';
         };
 
@@ -168,7 +181,6 @@
             interactiveShellInit = ''
                 set -gx GEM_HOME $HOME/gems
                 set PATH $PATH $HOME/gems/bin
-                set -Ux TERM screen-256color-bce
                 set PATH $PATH $HOME/.local/bin
                 set -U fish_greeting
                 '';
