@@ -17,12 +17,7 @@
         trash-cli
         php
         jetbrains.phpstorm
-        jetbrains.webstorm
-        jetbrains.idea-ultimate
         jetbrains.goland
-        jetbrains.datagrip
-        jetbrains.clion
-        jetbrains.pycharm-community
         du-dust
         fd
         procs
@@ -74,7 +69,13 @@
                 vim-nerdtree-syntax-highlight
                 nerdtree-git-plugin
                 vim-startify
-                neo-tree-nvim
+                vim-smoothie
+                {
+                    plugin = neo-tree-nvim;
+                    config = ''
+                        nnoremap <silent> <C-n> <cmd>Neotree source=filesystem reveal=true position=float<CR>
+                    '';
+                }
                 plenary-nvim
                 windows-nvim
                 {
@@ -100,18 +101,19 @@
                         '';
                 }
                 {
-                    plugin = sonokai;
+                    plugin = melange-nvim;
                     config = ''
                         syntax enable
-                        colorscheme sonokai
+                        set termguicolors
+                        colorscheme melange
                         '';
                 }
                 {
                     plugin = barbar-nvim;
                     config = ''
                         nnoremap <silent> <A-,> <Cmd>BufferPrevious<CR>
-                        nnoremap <silent> <A-.> <Cmd>BufferNext<CR>
                         nnoremap <silent> <A-<> <Cmd>BufferMovePrevious<CR>
+                        nnoremap <silent> <A-.> <Cmd>BufferNext<CR>
                         nnoremap <silent> <A->> <Cmd>BufferMoveNext<CR>
                         nnoremap <silent> <A-1> <Cmd>BufferGoto 1<CR>
                         nnoremap <silent> <A-2> <Cmd>BufferGoto 2<CR>
@@ -261,6 +263,7 @@
 
             extraConfig = ''
                 set -g status-right '#(date +"%%d-%%m-%%Y %%H:%%M:%%S")'
+                set -sg escape-time 0
             '';
         };
     };
