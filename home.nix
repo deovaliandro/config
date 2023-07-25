@@ -15,8 +15,6 @@
         curl
         neofetch
         trash-cli
-        php
-        jetbrains.phpstorm
         jetbrains.goland
         du-dust
         fd
@@ -91,14 +89,14 @@
                         set t_Co=256
                         let g:airline#extensions#branch#enable = 1
                         let g:airline#extensions#whitespace#enabled = 0
-                        '';
+                    '';
                 }
                 {
                     plugin = vim-unimpaired;
                     config = ''
                         nmap <C-k> [e
                         nmap <C-j> ]e
-                        '';
+                    '';
                 }
                 {
                     plugin = melange-nvim;
@@ -106,7 +104,7 @@
                         syntax enable
                         set termguicolors
                         colorscheme melange
-                        '';
+                    '';
                 }
                 {
                     plugin = barbar-nvim;
@@ -145,19 +143,11 @@
                 set cc=80
                 let g:loaded_netrw       = 1
                 let g:loaded_netrwPlugin = 1
-                '';
+            '';
         };
 
         bat = {
             enable = true;
-            themes = {
-                dracula = builtins.readFile (pkgs.fetchFromGitHub {
-                        owner = "dracula";
-                        repo = "sublime";
-                        rev = "26c57ec282abcaa76e57e055f38432bd827ac34e";
-                        sha256 = "019hfl4zbn4vm4154hh3bwk6hm7bdxbr1hdww83nabxwjn99ndhv";
-                        } + "/Dracula.tmTheme");
-            };
             config = {
                 pager = "less -FR";
             };
@@ -188,7 +178,7 @@
                 set PATH $PATH $HOME/gems/bin
                 set PATH $PATH $HOME/.local/bin
                 set -U fish_greeting
-                '';
+            '';
         };
 
         starship = {
