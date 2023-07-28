@@ -31,12 +31,32 @@
         emacs = {
             enable = true;
             extraConfig = ''
-                (setq inhibit-splash-screen t)
-                (blink-cursor-mode 0)
-                (tool-bar-mode 0)
-                (set-frame-font "IosevkaTerm Nerd Font Mono" nil t)
-                (setq colom-number-mode t)
-                (setq ring-bell-function 'ignore)
+	    	    ;; Don't show a startup message
+                (setq inhibit-startup-message t)
+
+                ;; Show line and column numbers
+                (setq line-number-mode t)
+                (setq column-number-mode t)
+
+                ;; Show syntax highlighting
+                (global-font-lock-mode t)
+
+                ;; Highlight marked regions
+                (setq-default transient-mark-mode t)
+
+                ;; Parentheses
+                (electric-pair-mode 1)                  ; automatically close parentheses, etc.
+                (show-paren-mode t)                     ; show matching parentheses
+
+                ;; Smooth scrolling (one line at a time)
+                (setq scroll-step 1)
+
+                ;; Tab settings: 2 spaces.  See also: language-specific customizations below.
+                (setq-default indent-tabs-mode nil)
+                (setq tab-width 2)
+
+                ;; Easier buffer switching
+                (global-set-key "\C-x\C-b" 'electric-buffer-list)
             '';
         };
 
