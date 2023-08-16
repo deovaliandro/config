@@ -15,14 +15,10 @@
         curl
         neofetch
         trash-cli
-        jetbrains.goland
         du-dust
         fd
         procs
         fzf
-        nodejs_20
-        go
-        ranger
     ];
 
     programs.home-manager.enable = true;
@@ -31,7 +27,7 @@
         emacs = {
             enable = true;
             extraConfig = ''
-	    	    ;; Don't show a startup message
+                ;; Don't show a startup message
                 (setq inhibit-startup-message t)
 
                 ;; Show line and column numbers
@@ -45,8 +41,8 @@
                 (setq-default transient-mark-mode t)
 
                 ;; Parentheses
-                (electric-pair-mode 1)                  ; automatically close parentheses, etc.
-                (show-paren-mode t)                     ; show matching parentheses
+                (electric-pair-mode 1)
+                (show-paren-mode t)
 
                 ;; Smooth scrolling (one line at a time)
                 (setq scroll-step 1)
